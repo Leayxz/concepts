@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-api
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: python-api
+
+  template:
+    metadata:
+      labels:
+        app: python-api
+
+    spec:
+      containers:
+      - name: python-api
+        image: python-api:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 8000
+
+# O DEPLOY.YML DEFINE CONFIGS E MANTÉM PODS
+# SELECTOR DEFINE O CONTROLE DOS LABELS, TEMPLATE DEFINE OS LABELS, SPEC DEFINE AS CONFIGS DO POD

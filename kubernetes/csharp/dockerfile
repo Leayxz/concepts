@@ -1,0 +1,20 @@
+# STAGE 1: BUILD
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+WORKDIR /src
+
+COPY *.csproj .
+RUN dotnet restore
+
+COPY . .
+RUN dotnet publish -c Release -o /app
+
+# STAGE 2: RUNTIME
+FROM mcr.microsoft.com/dotnet/aspnet:10.0
+WORKDIR /app
+
+COPY --from=build /app .
+ENTRYPOINT [ "dotnet", "csharp.dll" ]
+
+# O .csproj É SEPARADO COMO O deps.txt EM PYTHON
+# CADA FROM FUNCIONA COMO UM 'STAGE', GUARDANDO ESTADO
+# Release FAZ O BUILD PARA /app E NO STAGE 2 ELE E USADO PARA COMPILAR

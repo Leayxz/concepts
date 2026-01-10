@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "MNydKciz2gs=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\leand\\OneDrive\\Documentos\\VSCode\\Kubernetes\\csharp\\csharp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\leand\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.1\\microsoft.aspnetcore.openapi.10.0.1.nupkg.sha512",
+    "C:\\Users\\leand\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

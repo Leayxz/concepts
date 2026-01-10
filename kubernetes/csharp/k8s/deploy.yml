@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: csharp-app
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: csharp-app
+
+  template:
+    metadata:
+      labels:
+        app: csharp-app
+
+    spec:
+      containers:
+      - name: csharp-app
+        image: csharp-app:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 8080
+
+# O DEPLOY.YML DEFINE CONFIGS E MANTÉM PODS
+# SELECTOR DEFINE O CONTROLE DOS LABELS, TEMPLATE DEFINE OS LABELS, SPEC DEFINE AS CONFIGS DO POD
