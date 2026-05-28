@@ -1,0 +1,13 @@
+[project]
+name = "security"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "bcrypt>=5.0.0",
+    "fastapi>=0.136.1",
+    "pydantic[email]>=2.13.4",
+    "python-jose[cryptography]>=3.5.0",
+    "uvicorn>=0.48.0",
+]
