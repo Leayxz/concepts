@@ -1,0 +1,48 @@
+services:
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+
+
+  prometheus:
+    image: prom/prometheus:latest
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--web.enable-remote-write-receiver"
+    volumes:
+      - ./telemetry/prometheus.yaml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "9090:9090"
+
+
+  loki:
+    image: grafana/loki:latest
+    command: -config.file=/etc/loki/local-config.yaml
+    ports:
+      - "3100:3100"
+
+
+  tempo:
+    image: grafana/tempo:latest
+    command: ["-config.file=/etc/tempo.yaml"]
+    volumes:
+      - ./telemetry/tempo.yaml:/etc/tempo.yaml:ro
+    ports:
+      - "3200:3200"
+
+
+  collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    command:
+      - "--config=/etc/otelcol/config.yaml"
+    volumes:
+      - ./telemetry/collector.yaml:/etc/otelcol/config.yaml:ro
+    ports:
+      - "4317:4317"
+
+
+volumes:
+  postgres_data:
+  static_data:
